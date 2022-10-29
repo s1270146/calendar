@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:calendar/main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DatePlanList extends StatelessWidget {
+class DatePlanList extends StatefulWidget {
   const DatePlanList({
     Key? key,
     required this.selectedYear,
@@ -14,6 +14,11 @@ class DatePlanList extends StatelessWidget {
   final int selectedMonth;
   final int selectedDay;
 
+  @override
+  State<DatePlanList> createState() => _DatePlanList();
+}
+
+class _DatePlanList extends State<DatePlanList> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,7 +39,7 @@ class DatePlanList extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.only(left: 20),
                 child: Text(
-                  '$selectedMonth / $selectedDay',
+                  '${widget.selectedMonth} / ${widget.selectedDay}',
                   style: GoogleFonts.anton(
                     textStyle: TextStyle(
                       color: myBlack,
@@ -58,9 +63,9 @@ class DatePlanList extends StatelessWidget {
                       ),
                       builder: (BuildContext context) {
                         return AddPlanView(
-                          selectedYear: selectedYear,
-                          selectedMonth: selectedMonth,
-                          selectedDay: selectedDay,
+                          selectedYear: widget.selectedYear,
+                          selectedMonth: widget.selectedMonth,
+                          selectedDay: widget.selectedDay,
                         );
                       },
                     );
