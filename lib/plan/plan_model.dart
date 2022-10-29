@@ -1,22 +1,14 @@
 class PlanModel {
-  int year;
-  int month;
-  int day;
-  int hour;
-  int minute;
+  DateTime startDate;
+  DateTime endDate;
   String title;
   String comment;
-  String category;
   bool isAllDay;
   PlanModel(
-    this.year,
-    this.month,
-    this.day,
-    this.hour,
-    this.minute,
+    this.startDate,
+    this.endDate,
     this.title,
     this.comment,
-    this.category,
     this.isAllDay,
   );
 }

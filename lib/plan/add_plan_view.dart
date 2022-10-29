@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:calendar/main.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 
+// 入力項目 変数
+// タイトル _planTitleController
+// 終日判定 isAllDay
+// 開始日時 _startDate
+// 終了日時 _endDate
+// コメント _planCommentController
+
 class AddPlanView extends StatefulWidget {
   const AddPlanView({
     Key? key,
@@ -102,6 +109,7 @@ class _AddPlanViewState extends State<AddPlanView> {
               ),
             ],
           ),
+          // 項目 タイトル
           Container(
             padding: const EdgeInsets.only(
               left: 20,
@@ -133,6 +141,7 @@ class _AddPlanViewState extends State<AddPlanView> {
               ),
             ),
           ),
+          // 項目 終日
           Container(
             height: 60,
             margin: const EdgeInsets.only(bottom: 10),
@@ -172,6 +181,7 @@ class _AddPlanViewState extends State<AddPlanView> {
               ],
             ),
           ),
+          // 項目 開始日
           SizedBox(
             height: 50,
             child: Stack(
@@ -290,6 +300,7 @@ class _AddPlanViewState extends State<AddPlanView> {
               ],
             ),
           ),
+          // 項目 終了日時
           SizedBox(
             height: 50,
             child: Stack(
@@ -408,6 +419,7 @@ class _AddPlanViewState extends State<AddPlanView> {
               ],
             ),
           ),
+          // 項目 コメント
           SingleChildScrollView(
             child: Container(
               padding: const EdgeInsets.only(

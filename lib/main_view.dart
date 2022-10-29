@@ -1,5 +1,6 @@
 import 'package:calendar/calendar/calendar_view.dart';
 import 'package:calendar/pictures/pictures_view.dart';
+import 'package:calendar/plan/plan_model.dart';
 import 'package:calendar/settings/settings_view.dart';
 import 'package:calendar/calendar/calendar_builder.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,17 @@ class _MainViewState extends State<MainView> {
   @override
   void initState() {
     super.initState();
+
+    // DB取得
+    allPranList = [
+      PlanModel(
+        DateTime(2022, 10, 31),
+        DateTime(2022, 11, 2),
+        "title",
+        'comment',
+        true,
+      )
+    ];
     int cnt = 0;
     for (int i = 1900; i <= 2100; i++) {
       for (int j = 1; j <= 12; j++) {
@@ -67,6 +79,21 @@ class _MainViewState extends State<MainView> {
         automaticallyImplyLeading: false,
         backgroundColor: myPurple,
         actions: [
+          Container(
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+              onPressed: () {
+                setState(() {
+                  allPranList;
+                });
+              },
+              icon: Icon(
+                Icons.refresh,
+                color: myBlack,
+                size: 30,
+              ),
+            ),
+          ),
           Container(
             padding: const EdgeInsets.only(right: 10),
             child: IconButton(
