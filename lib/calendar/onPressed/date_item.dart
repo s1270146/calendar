@@ -1,9 +1,12 @@
 import 'package:calendar/main.dart';
 import 'package:calendar/plan/date_plan_list.dart';
+import 'package:calendar/plan/plan_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DateItem extends StatelessWidget {
+// 日付1日に対して一つのコンテナ
+
+class DateItem extends StatefulWidget {
   const DateItem({
     Key? key,
     required this.viewYear,
@@ -27,7 +30,32 @@ class DateItem extends StatelessWidget {
   final bool isAddMonth;
 
   @override
+  State<DateItem> createState() => _DateItem();
+}
+
+class _DateItem extends State<DateItem> {
+  List<PlanModel> planList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    for (var plan in allPranList) {
+      DateTime _selectedDate = DateTime(
+          widget.selectedYear, widget.selectedMonth, widget.selectedDay);
+      if (_selectedDate.isAtSameMomentAs(plan.startDate)) {
+        planList.add(plan);
+      } else if (_selectedDate.isAtSameMomentAs(plan.endDate)) {
+        planList.add(plan);
+      } else if (_selectedDate.isAfter(plan.startDate) &&
+          _selectedDate.isBefore(plan.endDate)) {
+        planList.add(plan);
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    int planListLength = planList.length;
     return InkWell(
       onTap: () {
         showModalBottomSheet(
@@ -39,9 +67,9 @@ class DateItem extends StatelessWidget {
           ),
           builder: (BuildContext context) {
             return DatePlanList(
-              selectedYear: selectedYear,
-              selectedMonth: selectedMonth,
-              selectedDay: selectedDay,
+              selectedYear: widget.selectedYear,
+              selectedMonth: widget.selectedMonth,
+              selectedDay: widget.selectedDay,
             );
           },
         );
@@ -51,19 +79,63 @@ class DateItem extends StatelessWidget {
         width: (MediaQuery.of(context).size.width - 30) / 7,
         decoration: BoxDecoration(
           border: Border.all(
-            color: borderColor,
+            color: widget.borderColor,
           ),
-          color: backgroundColor,
+          color: widget.backgroundColor,
         ),
-        child: Text(
-          isAddMonth
-              ? "${selectedMonth.toString()}/${selectedDay.toString()}"
-              : selectedDay.toString(),
-          style: GoogleFonts.anton(
-            textStyle: TextStyle(
-              color: textColor,
+        child: Stack(
+          children: [
+            Container(
+              alignment: Alignment.topLeft,
+              child: Text(
+                widget.isAddMonth
+                    ? "${widget.selectedMonth.toString()}/${widget.selectedDay.toString()}"
+                    : widget.selectedDay.toString(),
+                style: GoogleFonts.anton(
+                  textStyle: TextStyle(
+                    color: widget.textColor,
+                  ),
+                ),
+              ),
             ),
-          ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: (MediaQuery.of(context).size.height - 300) / 6 - 20,
+                width: (MediaQuery.of(context).size.width - 30) / 7,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    for (int i = 0; i < planListLength; i++)
+                      Container(
+                        height:
+                            ((MediaQuery.of(context).size.height - 300) / 6 -
+                                        20) /
+                                    5 -
+                                2,
+                        width: (MediaQuery.of(context).size.width - 30) / 7 - 5,
+                        decoration: BoxDecoration(
+                          color: myYellow,
+                          borderRadius: BorderRadius.circular(3),
+                          border: Border.all(
+                            width: 0.5,
+                            color: myPink,
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            planList[i].title,
+                            style: TextStyle(
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );

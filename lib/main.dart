@@ -1,4 +1,5 @@
 import 'package:calendar/login/login.dart';
+import 'package:calendar/plan/plan_model.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
 
 late PageController calendarController;
 late int thisMonthIndex;
+late List<PlanModel> allPranList;
 Color myBlack = Colors.black;
 Color myPurple = const Color.fromRGBO(88, 0, 255, 1);
 Color myPink = const Color.fromRGBO(233, 0, 255, 1);
