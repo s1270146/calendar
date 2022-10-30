@@ -3,6 +3,7 @@ import 'package:calendar/pictures/pictures_view.dart';
 import 'package:calendar/plan/plan_model.dart';
 import 'package:calendar/settings/settings_view.dart';
 import 'package:calendar/calendar/calendar_builder.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar/main.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,13 +18,32 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
+  bool isLoading = true;
+  final _firestore = FirebaseFirestore.instance;
   List<CalendarBuilder> calendarPage = [];
   @override
   void initState() {
     super.initState();
-
     // DB取得
-    allPranList = [];
+    Future(() async {
+      List<PlanModel> _allPlanList = [];
+      QuerySnapshot allPlanListSnap =
+          await _firestore.collection('plan-list').get();
+      for (var doc in allPlanListSnap.docs) {
+        _allPlanList.add(PlanModel(
+          doc.get('start-date').toDate(),
+          doc.get('end-date').toDate(),
+          doc.get('plan-title'),
+          doc.get('plan-comment'),
+          doc.get('is-all-day'),
+          doc.id,
+        ));
+        setState(() {
+          allPlanList = _allPlanList;
+          isLoading = false;
+        });
+      }
+    });
     int cnt = 0;
     for (int i = 1900; i <= 2100; i++) {
       for (int j = 1; j <= 12; j++) {
@@ -39,6 +59,7 @@ class _MainViewState extends State<MainView> {
         cnt++;
       }
     }
+
     calendarController = PageController(initialPage: thisMonthIndex);
     _pages = [
       CalendarView(page: calendarPage),
@@ -76,7 +97,7 @@ class _MainViewState extends State<MainView> {
             child: IconButton(
               onPressed: () {
                 setState(() {
-                  allPranList;
+                  allPlanList;
                 });
               },
               icon: Icon(

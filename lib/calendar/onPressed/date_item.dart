@@ -39,7 +39,7 @@ class _DateItem extends State<DateItem> {
   @override
   void initState() {
     super.initState();
-    for (var plan in allPranList) {
+    for (var plan in allPlanList) {
       DateTime selectedDate = DateTime(
           widget.selectedYear, widget.selectedMonth, widget.selectedDay);
       if (selectedDate.isAtSameMomentAs(plan.startDate)) {

@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
 
 late PageController calendarController;
 late int thisMonthIndex;
-late List<PlanModel> allPranList;
+late List<PlanModel> allPlanList;
 Color myBlack = Colors.black;
 Color myPurple = const Color.fromRGBO(88, 0, 255, 1);
 Color myPink = const Color.fromRGBO(233, 0, 255, 1);
