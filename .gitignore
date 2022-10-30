@@ -54,3 +54,4 @@ app.*.map.json
 /test/*
 /web/*
 /windows/*
+/lib/firebase_option.dart
