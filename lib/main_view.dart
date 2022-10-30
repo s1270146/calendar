@@ -23,24 +23,7 @@ class _MainViewState extends State<MainView> {
     super.initState();
 
     // DB取得
-    allPranList = [
-      PlanModel(
-        DateTime(2022, 10, 31),
-        DateTime(2022, 11, 2),
-        "title1",
-        'comment',
-        true,
-        'abc',
-      ),
-      PlanModel(
-        DateTime(2022, 11, 1),
-        DateTime(2022, 11, 1),
-        "title2",
-        'comment',
-        true,
-        'abc',
-      ),
-    ];
+    allPranList = [];
     int cnt = 0;
     for (int i = 1900; i <= 2100; i++) {
       for (int j = 1; j <= 12; j++) {

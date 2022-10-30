@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar/main.dart';
 import 'package:flutter_picker/flutter_picker.dart';
@@ -25,6 +26,7 @@ class AddPlanView extends StatefulWidget {
 }
 
 class _AddPlanViewState extends State<AddPlanView> {
+  final _firestore = FirebaseFirestore.instance;
   bool isAllDay = true;
   late DateTime _startDate;
   late DateTime _endDate;
@@ -103,6 +105,13 @@ class _AddPlanViewState extends State<AddPlanView> {
                   onPressed: _planTitleController.text == ''
                       ? null
                       : () {
+                          _firestore.collection('plan-list').add({
+                            'plan-title': _planTitleController.text,
+                            'plan-comment': _planCommentController.text,
+                            'start-date': _startDate,
+                            'end-date': _endDate,
+                            'is-all-day': isAllDay,
+                          });
                           Navigator.pop(context);
                         },
                 ),
