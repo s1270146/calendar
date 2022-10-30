@@ -40,14 +40,14 @@ class _DateItem extends State<DateItem> {
   void initState() {
     super.initState();
     for (var plan in allPranList) {
-      DateTime _selectedDate = DateTime(
+      DateTime selectedDate = DateTime(
           widget.selectedYear, widget.selectedMonth, widget.selectedDay);
-      if (_selectedDate.isAtSameMomentAs(plan.startDate)) {
+      if (selectedDate.isAtSameMomentAs(plan.startDate)) {
         planList.add(plan);
-      } else if (_selectedDate.isAtSameMomentAs(plan.endDate)) {
+      } else if (selectedDate.isAtSameMomentAs(plan.endDate)) {
         planList.add(plan);
-      } else if (_selectedDate.isAfter(plan.startDate) &&
-          _selectedDate.isBefore(plan.endDate)) {
+      } else if (selectedDate.isAfter(plan.startDate) &&
+          selectedDate.isBefore(plan.endDate)) {
         planList.add(plan);
       }
     }

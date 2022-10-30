@@ -4,11 +4,13 @@ class PlanModel {
   String title;
   String comment;
   bool isAllDay;
+  String id;
   PlanModel(
     this.startDate,
     this.endDate,
     this.title,
     this.comment,
     this.isAllDay,
+    this.id,
   );
 }
