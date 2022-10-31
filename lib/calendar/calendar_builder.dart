@@ -1,19 +1,26 @@
 import 'package:calendar/calendar/onPressed/back_today.dart';
 import 'package:calendar/calendar/onPressed/date_item.dart';
 import 'package:calendar/calendar/onPressed/plan_addition_button.dart';
+import 'package:calendar/plan/plan_model.dart';
 import 'package:calendar/text/year_and_month.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar/calendar/calendar_model.dart';
 import 'package:calendar/main.dart';
 
 class CalendarBuilder extends StatelessWidget {
-  const CalendarBuilder({Key? key, required this.year, required this.month})
-      : super(key: key);
+  const CalendarBuilder({
+    Key? key,
+    required this.year,
+    required this.month,
+    required this.planList,
+  }) : super(key: key);
   final int year;
   final int month;
+  final List<PlanModel> planList;
   @override
   Widget build(BuildContext context) {
     var calendar = CalendarModel(year, month);
+    Map<int, List<PlanModel>> thisMonthList;
     return Container(
       padding: const EdgeInsets.only(right: 5, left: 5, top: 20),
       margin: const EdgeInsets.all(5),
@@ -46,41 +53,48 @@ class CalendarBuilder extends StatelessWidget {
             Row(
               children: [
                 for (var aDate in week)
-                  aDate.year == year && aDate.month == month
-                      ? isToday(aDate.year, aDate.month, aDate.day)
-                          ? DateItem(
-                              viewYear: year,
-                              viewMonth: month,
-                              selectedYear: aDate.year,
-                              selectedMonth: aDate.month,
-                              selectedDay: aDate.day,
-                              backgroundColor: myPink,
-                              borderColor: myPurple,
-                              textColor: myBlack,
-                              isAddMonth: aDate.day == 1,
-                            )
-                          : DateItem(
-                              viewYear: year,
-                              viewMonth: month,
-                              selectedYear: aDate.year,
-                              selectedMonth: aDate.month,
-                              selectedDay: aDate.day,
-                              backgroundColor: myBlack,
-                              borderColor: myPurple,
-                              textColor: myPink,
-                              isAddMonth: aDate.day == 1,
-                            )
-                      : DateItem(
-                          viewYear: year,
-                          viewMonth: month,
-                          selectedYear: aDate.year,
-                          selectedMonth: aDate.month,
-                          selectedDay: aDate.day,
-                          backgroundColor: myPurple,
-                          borderColor: myPink,
-                          textColor: myBlack,
-                          isAddMonth: aDate.day == 1 || aDate.weekday == 7,
-                        )
+                  if (aDate.year == year && aDate.month == month)
+                    if (isToday(aDate.year, aDate.month, aDate.day)) ...{
+                      DateItem(
+                        viewYear: year,
+                        viewMonth: month,
+                        selectedYear: aDate.year,
+                        selectedMonth: aDate.month,
+                        selectedDay: aDate.day,
+                        backgroundColor: myPink,
+                        borderColor: myPurple,
+                        textColor: myBlack,
+                        isAddMonth: aDate.day == 1,
+                        planList: planList,
+                      ),
+                    } else ...[
+                      DateItem(
+                        viewYear: year,
+                        viewMonth: month,
+                        selectedYear: aDate.year,
+                        selectedMonth: aDate.month,
+                        selectedDay: aDate.day,
+                        backgroundColor: myBlack,
+                        borderColor: myPurple,
+                        textColor: myPink,
+                        isAddMonth: aDate.day == 1,
+                        planList: planList,
+                      )
+                    ]
+                  else ...[
+                    DateItem(
+                      viewYear: year,
+                      viewMonth: month,
+                      selectedYear: aDate.year,
+                      selectedMonth: aDate.month,
+                      selectedDay: aDate.day,
+                      backgroundColor: myPurple,
+                      borderColor: myPink,
+                      textColor: myBlack,
+                      isAddMonth: aDate.day == 1 || aDate.weekday == 7,
+                      planList: planList,
+                    ),
+                  ]
               ],
             ),
         ],

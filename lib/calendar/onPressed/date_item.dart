@@ -18,6 +18,7 @@ class DateItem extends StatefulWidget {
     required this.borderColor,
     required this.textColor,
     required this.isAddMonth,
+    required this.planList,
   }) : super(key: key);
   final int viewYear;
   final int viewMonth;
@@ -28,34 +29,16 @@ class DateItem extends StatefulWidget {
   final Color borderColor;
   final Color textColor;
   final bool isAddMonth;
+  final List<PlanModel> planList;
 
   @override
   State<DateItem> createState() => _DateItem();
 }
 
 class _DateItem extends State<DateItem> {
-  List<PlanModel> planList = [];
-
-  @override
-  void initState() {
-    super.initState();
-    for (var plan in allPlanList) {
-      DateTime selectedDate = DateTime(
-          widget.selectedYear, widget.selectedMonth, widget.selectedDay);
-      if (selectedDate.isAtSameMomentAs(plan.startDate)) {
-        planList.add(plan);
-      } else if (selectedDate.isAtSameMomentAs(plan.endDate)) {
-        planList.add(plan);
-      } else if (selectedDate.isAfter(plan.startDate) &&
-          selectedDate.isBefore(plan.endDate)) {
-        planList.add(plan);
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    int planListLength = planList.length;
+    int planListLength = widget.planList.length;
     return InkWell(
       onTap: () {
         showModalBottomSheet(
@@ -124,7 +107,7 @@ class _DateItem extends State<DateItem> {
                         ),
                         child: Center(
                           child: Text(
-                            planList[i].title,
+                            widget.planList[i].title,
                             style: TextStyle(
                               fontSize: 13,
                             ),

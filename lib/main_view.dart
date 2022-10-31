@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:calendar/calendar/calendar_view.dart';
 import 'package:calendar/pictures/pictures_view.dart';
 import 'package:calendar/plan/plan_model.dart';
@@ -25,6 +27,8 @@ class _MainViewState extends State<MainView> {
   void initState() {
     super.initState();
     // DB取得
+    final completer = Completer();
+    var future = completer.future;
     Future(() async {
       List<PlanModel> _allPlanList = [];
       QuerySnapshot allPlanListSnap =
@@ -38,38 +42,37 @@ class _MainViewState extends State<MainView> {
           doc.get('is-all-day'),
           doc.id,
         ));
-        setState(() {
-          allPlanList = _allPlanList;
-          isLoading = false;
-        });
       }
-    });
-    int cnt = 0;
-    for (int i = 1900; i <= 2100; i++) {
-      for (int j = 1; j <= 12; j++) {
-        if (DateTime.now().year == i && DateTime.now().month == j) {
-          thisMonthIndex = cnt;
+      setState(() {
+        allPlanList = _allPlanList;
+        isLoading = false;
+        int cnt = 0;
+        for (int i = 1900; i <= 2100; i++) {
+          for (int j = 1; j <= 12; j++) {
+            if (DateTime.now().year == i && DateTime.now().month == j) {
+              calendarController = PageController(initialPage: cnt);
+            }
+            calendarPage.add(
+              CalendarBuilder(
+                year: i,
+                month: j,
+                planList: _allPlanList,
+              ),
+            );
+            cnt++;
+          }
         }
-        calendarPage.add(
-          CalendarBuilder(
-            year: i,
-            month: j,
-          ),
-        );
-        cnt++;
-      }
-    }
-
-    calendarController = PageController(initialPage: thisMonthIndex);
-    _pages = [
-      CalendarView(page: calendarPage),
-      const PicturesView(),
-      const SettingsView(),
-    ];
+        _pages = [
+          CalendarView(page: calendarPage),
+          const PicturesView(),
+          const SettingsView(),
+        ];
+      });
+    });
   }
 
   var _selectMainIndex = 0;
-  late List<Widget> _pages;
+  List<Widget> _pages = [];
   void _onTapNavigationBarItem(int index) {
     setState(() {
       _selectMainIndex = index; //インデックスの更新
@@ -122,7 +125,15 @@ class _MainViewState extends State<MainView> {
           ),
         ],
       ),
-      body: _pages[_selectMainIndex],
+      body: _pages.isEmpty
+          ? Container(
+              alignment: Alignment.center,
+              color: myBlack,
+              child: CircularProgressIndicator(
+                color: myPink,
+              ),
+            )
+          : _pages[_selectMainIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
