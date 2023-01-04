@@ -1,17 +1,17 @@
-import 'package:calendar/main_view.dart';
+import 'package:calendar/view/screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:calendar/main.dart';
 import 'package:page_transition/page_transition.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<Login> createState() => _LoginState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginScreenState extends State<LoginScreen> {
   final _userAddressController = TextEditingController();
   final _userPassController = TextEditingController();
   bool _isObscure = true;
@@ -124,7 +124,7 @@ class _LoginState extends State<Login> {
                   Navigator.push(
                     context,
                     PageTransition(
-                      child: const MainView(),
+                      child: const MainScreen(),
                       duration: const Duration(milliseconds: 500),
                       type: PageTransitionType.bottomToTop,
                     ),

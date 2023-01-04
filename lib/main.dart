@@ -1,5 +1,5 @@
-import 'package:calendar/login/login.dart';
-import 'package:calendar/plan/plan_model.dart';
+import 'package:calendar/view/screen/login_screen.dart';
+import 'package:calendar/model/plan_model.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Calendar',
-      home: Login(),
+      home: LoginScreen(),
     );
   }
 }

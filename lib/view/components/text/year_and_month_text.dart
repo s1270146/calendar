@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:calendar/main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class YearAndMonth extends StatelessWidget {
-  const YearAndMonth({Key? key, required this.year, required this.month})
+class YearAndMonthText extends StatelessWidget {
+  const YearAndMonthText({Key? key, required this.year, required this.month})
       : super(key: key);
   final int year;
   final int month;

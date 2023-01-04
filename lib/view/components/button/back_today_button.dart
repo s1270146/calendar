@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:calendar/main.dart';
 
-class BackToday extends StatelessWidget {
-  const BackToday({
+class BackTodayButton extends StatelessWidget {
+  const BackTodayButton({
     Key? key,
   }) : super(key: key);
 

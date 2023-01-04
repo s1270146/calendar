@@ -1,12 +1,12 @@
-import 'package:calendar/plan/add_plan_view.dart';
-import 'package:calendar/plan/edit_plan_view.dart';
-import 'package:calendar/plan/plan_model.dart';
+import 'package:calendar/view/modal/create_plan_modal.dart';
+import 'package:calendar/view/modal/edit_plan_modal.dart';
+import 'package:calendar/model/plan_model.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar/main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DatePlanList extends StatefulWidget {
-  const DatePlanList({
+class PlanListModal extends StatefulWidget {
+  const PlanListModal({
     Key? key,
     required this.selectedYear,
     required this.selectedMonth,
@@ -17,10 +17,10 @@ class DatePlanList extends StatefulWidget {
   final int selectedDay;
 
   @override
-  State<DatePlanList> createState() => _DatePlanList();
+  State<PlanListModal> createState() => _DatePlanList();
 }
 
-class _DatePlanList extends State<DatePlanList> {
+class _DatePlanList extends State<PlanListModal> {
   List<PlanModel> planList = [];
 
   @override
@@ -83,7 +83,7 @@ class _DatePlanList extends State<DatePlanList> {
                             BorderRadius.vertical(top: Radius.circular(15)),
                       ),
                       builder: (BuildContext context) {
-                        return AddPlanView(
+                        return CreatePlanModal(
                           selectedYear: widget.selectedYear,
                           selectedMonth: widget.selectedMonth,
                           selectedDay: widget.selectedDay,
@@ -119,7 +119,7 @@ class _DatePlanList extends State<DatePlanList> {
                                     top: Radius.circular(15)),
                               ),
                               builder: (BuildContext context) {
-                                return EditPlanView(
+                                return EditPlanModal(
                                   planModel: planList[i],
                                 );
                               },

@@ -1,6 +1,6 @@
 import 'package:calendar/main.dart';
-import 'package:calendar/plan/date_plan_list.dart';
-import 'package:calendar/plan/plan_model.dart';
+import 'package:calendar/view/modal/plan_list_modal.dart';
+import 'package:calendar/model/plan_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -49,7 +49,7 @@ class _DateItem extends State<DateItem> {
             borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
           ),
           builder: (BuildContext context) {
-            return DatePlanList(
+            return PlanListModal(
               selectedYear: widget.selectedYear,
               selectedMonth: widget.selectedMonth,
               selectedDay: widget.selectedDay,

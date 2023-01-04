@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:calendar/main.dart';
-import 'package:calendar/calendar/calendar_builder.dart';
+import 'package:calendar/view/page/month_calendar_page.dart';
 
-class CalendarView extends StatelessWidget {
-  const CalendarView({
+class AllCalendarPage extends StatelessWidget {
+  const AllCalendarPage({
     Key? key,
     required this.page,
   }) : super(key: key);
-  final List<CalendarBuilder> page;
+  final List<MonthCalendarPage> page;
   @override
   Widget build(BuildContext context) {
     return Container(

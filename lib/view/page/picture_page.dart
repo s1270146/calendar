@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class SettingsView extends StatelessWidget {
-  const SettingsView({
+class PicturePage extends StatelessWidget {
+  const PicturePage({
     Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('設定画面\n調整中'),
+    return Center(
+      child: Text('写真一覧画面\n調整中'),
     );
   }
 }

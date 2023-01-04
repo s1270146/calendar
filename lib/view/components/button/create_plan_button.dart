@@ -1,9 +1,9 @@
-import 'package:calendar/plan/add_plan_view.dart';
+import 'package:calendar/view/modal/create_plan_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar/main.dart';
 
-class PlanAdditionButton extends StatelessWidget {
-  const PlanAdditionButton({
+class CreatePlanButton extends StatelessWidget {
+  const CreatePlanButton({
     Key? key,
   }) : super(key: key);
 
@@ -19,7 +19,7 @@ class PlanAdditionButton extends StatelessWidget {
             borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
           ),
           builder: (BuildContext context) {
-            return AddPlanView(
+            return CreatePlanModal(
               selectedYear: DateTime.now().year,
               selectedMonth: DateTime.now().month,
               selectedDay: DateTime.now().day,

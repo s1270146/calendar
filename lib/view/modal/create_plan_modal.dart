@@ -1,4 +1,4 @@
-import 'package:calendar/plan/plan_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar/main.dart';
 import 'package:flutter_picker/flutter_picker.dart';
@@ -9,26 +9,30 @@ import 'package:flutter_picker/flutter_picker.dart';
 // 開始日時 _startDate
 // 終了日時 _endDate
 // コメント _planCommentController
-// ID id
 
-class EditPlanView extends StatefulWidget {
-  const EditPlanView({
+class CreatePlanModal extends StatefulWidget {
+  const CreatePlanModal({
     Key? key,
-    required this.planModel,
+    required this.selectedYear,
+    required this.selectedMonth,
+    required this.selectedDay,
   }) : super(key: key);
-  final PlanModel planModel;
+  final int selectedYear;
+  final int selectedMonth;
+  final int selectedDay;
 
   @override
-  State<EditPlanView> createState() => _EditPlanViewState();
+  State<CreatePlanModal> createState() => _CreatePlanModalState();
 }
 
-class _EditPlanViewState extends State<EditPlanView> {
-  late bool isAllDay;
+class _CreatePlanModalState extends State<CreatePlanModal> {
+  final _firestore = FirebaseFirestore.instance;
+  bool isAllDay = true;
   late DateTime _startDate;
   late DateTime _endDate;
   final double thisFontSize = 20;
-  late TextEditingController _planTitleController;
-  late TextEditingController _planCommentController;
+  final _planTitleController = TextEditingController();
+  final _planCommentController = TextEditingController();
 
   String japaneseWeekday(int weekday) {
     switch (weekday) {
@@ -51,14 +55,17 @@ class _EditPlanViewState extends State<EditPlanView> {
   @override
   void initState() {
     super.initState();
-    _startDate = widget.planModel.startDate;
-    _endDate = widget.planModel.endDate;
-    isAllDay = widget.planModel.isAllDay;
-    _planTitleController = TextEditingController(
-      text: widget.planModel.title,
+    _startDate = DateTime(
+      widget.selectedYear,
+      widget.selectedMonth,
+      widget.selectedDay,
+      DateTime.now().hour + 1,
+      0,
     );
-    _planCommentController = TextEditingController(
-      text: widget.planModel.comment,
+    _endDate = _startDate.add(
+      const Duration(
+        hours: 1,
+      ),
     );
   }
 
@@ -98,6 +105,13 @@ class _EditPlanViewState extends State<EditPlanView> {
                   onPressed: _planTitleController.text == ''
                       ? null
                       : () {
+                          _firestore.collection('plan-list').add({
+                            'plan-title': _planTitleController.text,
+                            'plan-comment': _planCommentController.text,
+                            'start-date': _startDate,
+                            'end-date': _endDate,
+                            'is-all-day': isAllDay,
+                          });
                           Navigator.pop(context);
                         },
                 ),

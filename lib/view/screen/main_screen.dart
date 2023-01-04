@@ -1,28 +1,28 @@
 import 'dart:async';
 
-import 'package:calendar/calendar/calendar_view.dart';
-import 'package:calendar/pictures/pictures_view.dart';
-import 'package:calendar/plan/plan_model.dart';
-import 'package:calendar/settings/settings_view.dart';
-import 'package:calendar/calendar/calendar_builder.dart';
+import 'package:calendar/view/page/all_calendar_page.dart';
+import 'package:calendar/view/page/picture_page.dart';
+import 'package:calendar/model/plan_model.dart';
+import 'package:calendar/view/page/setting_page.dart';
+import 'package:calendar/view/page/month_calendar_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar/main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MainView extends StatefulWidget {
-  const MainView({
+class MainScreen extends StatefulWidget {
+  const MainScreen({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<MainView> createState() => _MainViewState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _MainViewState extends State<MainView> {
+class _MainScreenState extends State<MainScreen> {
   bool isLoading = true;
   final _firestore = FirebaseFirestore.instance;
-  List<CalendarBuilder> calendarPage = [];
+  List<MonthCalendarPage> calendarPage = [];
   @override
   void initState() {
     super.initState();
@@ -53,7 +53,7 @@ class _MainViewState extends State<MainView> {
               calendarController = PageController(initialPage: cnt);
             }
             calendarPage.add(
-              CalendarBuilder(
+              MonthCalendarPage(
                 year: i,
                 month: j,
                 planList: _allPlanList,
@@ -63,9 +63,9 @@ class _MainViewState extends State<MainView> {
           }
         }
         _pages = [
-          CalendarView(page: calendarPage),
-          const PicturesView(),
-          const SettingsView(),
+          AllCalendarPage(page: calendarPage),
+          const PicturePage(),
+          const SettingPage(),
         ];
       });
     });
