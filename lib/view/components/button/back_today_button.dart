@@ -1,5 +1,6 @@
+import 'package:calendar/view/components/value/my_colors.dart';
+import 'package:calendar/view/components/value/size.dart';
 import 'package:flutter/material.dart';
-import 'package:calendar/main.dart';
 
 class BackTodayButton extends StatelessWidget {
   const BackTodayButton({
@@ -17,10 +18,10 @@ class BackTodayButton extends StatelessWidget {
           curve: Curves.easeIn,
         );
       },
-      icon: const Icon(
+      icon: Icon(
         Icons.undo,
-        color: myPurple,
-        size: iconSize,
+        color: myColors.purple(),
+        size: mySize.iconSize,
       ),
     );
   }

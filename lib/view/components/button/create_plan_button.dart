@@ -1,6 +1,7 @@
+import 'package:calendar/view/components/value/my_colors.dart';
+import 'package:calendar/view/components/value/size.dart';
 import 'package:calendar/view/modal/create_plan_modal.dart';
 import 'package:flutter/material.dart';
-import 'package:calendar/main.dart';
 
 class CreatePlanButton extends StatelessWidget {
   const CreatePlanButton({
@@ -14,7 +15,7 @@ class CreatePlanButton extends StatelessWidget {
         showModalBottomSheet(
           context: context,
           isScrollControlled: true,
-          backgroundColor: myBlack,
+          backgroundColor: myColors.black(),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
           ),
@@ -29,8 +30,8 @@ class CreatePlanButton extends StatelessWidget {
       },
       icon: Icon(
         Icons.add,
-        color: myPurple,
-        size: iconSize,
+        color: myColors.purple(),
+        size: mySize.iconSize,
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:calendar/view/components/button/back_today_button.dart';
+import 'package:calendar/view/components/value/my_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:calendar/main.dart';
 import 'package:calendar/view/page/month_calendar_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -59,7 +59,7 @@ class AllCalendarPageState extends ConsumerState<AllCalendarPage> {
             child: CircularProgressIndicator(),
           )
         : Container(
-            color: myBlack,
+            color: myColors.black(),
             child: PageView(
               controller: calendarPageController,
               children: calendarPage,

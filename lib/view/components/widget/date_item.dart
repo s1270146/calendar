@@ -1,4 +1,4 @@
-import 'package:calendar/main.dart';
+import 'package:calendar/view/components/value/my_colors.dart';
 import 'package:calendar/view/modal/plan_list_modal.dart';
 import 'package:calendar/model/plan_model.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +44,7 @@ class _DateItem extends State<DateItem> {
         showModalBottomSheet(
           context: context,
           isScrollControlled: true,
-          backgroundColor: myPurple,
+          backgroundColor: myColors.purple(),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
           ),
@@ -98,17 +98,17 @@ class _DateItem extends State<DateItem> {
                                 2,
                         width: (MediaQuery.of(context).size.width - 30) / 7 - 5,
                         decoration: BoxDecoration(
-                          color: myYellow,
+                          color: myColors.yellow(),
                           borderRadius: BorderRadius.circular(3),
                           border: Border.all(
                             width: 0.5,
-                            color: myPink,
+                            color: myColors.pink(),
                           ),
                         ),
                         child: Center(
                           child: Text(
                             widget.planList[i].title,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 13,
                             ),
                           ),

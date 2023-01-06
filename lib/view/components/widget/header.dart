@@ -1,5 +1,5 @@
+import 'package:calendar/view/components/value/my_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:calendar/main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Header extends StatelessWidget implements PreferredSizeWidget {
@@ -10,22 +10,22 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         "Calendar",
         style: GoogleFonts.qwitcherGrypen(
-          textStyle: const TextStyle(
-            color: myBlack,
+          textStyle: TextStyle(
+            color: myColors.black(),
             fontSize: 40,
           ),
         ),
       ),
       automaticallyImplyLeading: false,
-      backgroundColor: myPurple,
+      backgroundColor: myColors.purple(),
       actions: [
         Container(
           padding: const EdgeInsets.only(right: 10),
           child: IconButton(
             onPressed: () {},
-            icon: const Icon(
+            icon: Icon(
               Icons.refresh,
-              color: myBlack,
+              color: myColors.black(),
               size: 30,
             ),
           ),
@@ -36,9 +36,9 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(
+            icon: Icon(
               Icons.logout,
-              color: myBlack,
+              color: myColors.black(),
               size: 30,
             ),
           ),

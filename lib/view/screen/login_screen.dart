@@ -1,7 +1,7 @@
+import 'package:calendar/view/components/value/my_colors.dart';
 import 'package:calendar/view/screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:calendar/main.dart';
 import 'package:page_transition/page_transition.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: myPurple,
+        color: myColors.purple(),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 'Login',
                 style: GoogleFonts.anton(
                   textStyle: TextStyle(
-                    color: myBlack,
+                    color: myColors.black(),
                     fontSize: 40,
                   ),
                 ),
@@ -39,9 +39,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 margin: const EdgeInsets.only(bottom: 20),
                 child: TextFormField(
                   controller: _userAddressController,
-                  cursorColor: myBlack,
+                  cursorColor: myColors.black(),
                   style: TextStyle(
-                    color: myBlack,
+                    color: myColors.black(),
                     fontSize: 15,
                   ),
                   validator: (value) {
@@ -52,19 +52,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   decoration: InputDecoration(
                     enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: myBlack),
+                      borderSide: BorderSide(color: myColors.black()),
                     ),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: myBlack),
+                      borderSide: BorderSide(color: myColors.black()),
                     ),
                     labelText: 'メールアドレス',
-                    labelStyle: TextStyle(color: myBlack, fontSize: 15),
-                    iconColor: myBlack,
-                    focusColor: myBlack,
-                    fillColor: myBlack,
-                    hoverColor: myBlack,
-                    prefixIconColor: myBlack,
-                    suffixIconColor: myBlack,
+                    labelStyle:
+                        TextStyle(color: myColors.black(), fontSize: 15),
+                    iconColor: myColors.black(),
+                    focusColor: myColors.black(),
+                    fillColor: myColors.black(),
+                    hoverColor: myColors.black(),
+                    prefixIconColor: myColors.black(),
+                    suffixIconColor: myColors.black(),
                   ),
                 ),
               ),
@@ -74,31 +75,32 @@ class _LoginScreenState extends State<LoginScreen> {
                 margin: const EdgeInsets.only(bottom: 20),
                 child: TextFormField(
                   controller: _userPassController,
-                  cursorColor: myBlack,
+                  cursorColor: myColors.black(),
                   style: TextStyle(
-                    color: myBlack,
+                    color: myColors.black(),
                     fontSize: 15,
                   ),
                   obscureText: _isObscure,
                   decoration: InputDecoration(
                     enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: myBlack),
+                      borderSide: BorderSide(color: myColors.black()),
                     ),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: myBlack),
+                      borderSide: BorderSide(color: myColors.black()),
                     ),
                     labelText: 'パスワード',
-                    labelStyle: TextStyle(color: myBlack, fontSize: 15),
-                    iconColor: myBlack,
-                    focusColor: myBlack,
-                    fillColor: myBlack,
-                    hoverColor: myBlack,
-                    prefixIconColor: myBlack,
-                    suffixIconColor: myBlack,
+                    labelStyle:
+                        TextStyle(color: myColors.black(), fontSize: 15),
+                    iconColor: myColors.black(),
+                    focusColor: myColors.black(),
+                    fillColor: myColors.black(),
+                    hoverColor: myColors.black(),
+                    prefixIconColor: myColors.black(),
+                    suffixIconColor: myColors.black(),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _isObscure ? Icons.visibility_off : Icons.visibility,
-                        color: myBlack,
+                        color: myColors.black(),
                       ),
                       onPressed: () {
                         setState(
@@ -113,13 +115,18 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: myBlack,
-                  onPrimary: myPink,
+                  backgroundColor: myColors.black(),
+                  foregroundColor: myColors.black(),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                child: const Text('Login'),
+                child: Text(
+                  'Login',
+                  style: TextStyle(
+                    color: myColors.pink(),
+                  ),
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,

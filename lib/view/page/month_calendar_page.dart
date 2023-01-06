@@ -1,4 +1,5 @@
 import 'package:calendar/view/components/button/back_today_button.dart';
+import 'package:calendar/view/components/value/my_colors.dart';
 import 'package:calendar/view/components/widget/date_item.dart';
 import 'package:calendar/view/components/button/create_plan_button.dart';
 import 'package:calendar/view/components/text/year_and_month_text.dart';
@@ -49,7 +50,7 @@ class MonthCalendarPage extends StatelessWidget {
       padding: const EdgeInsets.only(right: 5, left: 5, top: 20),
       margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(
-        border: Border.all(color: myPink),
+        border: Border.all(color: myColors.pink()),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -85,9 +86,9 @@ class MonthCalendarPage extends StatelessWidget {
                         selectedYear: aDate.year,
                         selectedMonth: aDate.month,
                         selectedDay: aDate.day,
-                        backgroundColor: myPink,
-                        borderColor: myPurple,
-                        textColor: myBlack,
+                        backgroundColor: myColors.pink(),
+                        borderColor: myColors.purple(),
+                        textColor: myColors.black(),
                         isAddMonth: aDate.day == 1,
                         planList: [],
                       ),
@@ -98,9 +99,9 @@ class MonthCalendarPage extends StatelessWidget {
                         selectedYear: aDate.year,
                         selectedMonth: aDate.month,
                         selectedDay: aDate.day,
-                        backgroundColor: myBlack,
-                        borderColor: myPurple,
-                        textColor: myPink,
+                        backgroundColor: myColors.black(),
+                        borderColor: myColors.purple(),
+                        textColor: myColors.pink(),
                         isAddMonth: aDate.day == 1,
                         planList: [],
                       )
@@ -112,9 +113,9 @@ class MonthCalendarPage extends StatelessWidget {
                       selectedYear: aDate.year,
                       selectedMonth: aDate.month,
                       selectedDay: aDate.day,
-                      backgroundColor: myPurple,
-                      borderColor: myPink,
-                      textColor: myBlack,
+                      backgroundColor: myColors.purple(),
+                      borderColor: myColors.pink(),
+                      textColor: myColors.black(),
                       isAddMonth: aDate.day == 1 || aDate.weekday == 7,
                       planList: [],
                     ),

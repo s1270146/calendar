@@ -1,6 +1,6 @@
 import 'package:calendar/model/plan_model.dart';
+import 'package:calendar/view/components/value/my_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:calendar/main.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 
 // 入力項目 変数
@@ -76,7 +76,7 @@ class _EditPlanModalState extends State<EditPlanModal> {
                 child: IconButton(
                   icon: Icon(
                     Icons.clear,
-                    color: myPink,
+                    color: myColors.pink(),
                     size: 25,
                   ),
                   onPressed: () {
@@ -91,8 +91,8 @@ class _EditPlanModalState extends State<EditPlanModal> {
                   icon: Icon(
                     Icons.add_comment,
                     color: _planTitleController.text == ''
-                        ? myPinkCanNotPress
-                        : myPink,
+                        ? myColors.pinkCanNotPress()
+                        : myColors.pink(),
                     size: 25,
                   ),
                   onPressed: _planTitleController.text == ''
@@ -113,26 +113,26 @@ class _EditPlanModalState extends State<EditPlanModal> {
             margin: const EdgeInsets.only(bottom: 20),
             child: TextFormField(
               controller: _planTitleController,
-              cursorColor: myPink,
+              cursorColor: myColors.pink(),
               style: TextStyle(
-                color: myPink,
+                color: myColors.pink(),
                 fontSize: 25,
               ),
               decoration: InputDecoration(
                 enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: myPink),
+                  borderSide: BorderSide(color: myColors.pink()),
                 ),
                 focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: myPink),
+                  borderSide: BorderSide(color: myColors.pink()),
                 ),
                 labelText: 'タイトル',
-                labelStyle: TextStyle(color: myPink, fontSize: 20),
-                iconColor: myPink,
-                focusColor: myPink,
-                fillColor: myPink,
-                hoverColor: myPink,
-                prefixIconColor: myPink,
-                suffixIconColor: myPink,
+                labelStyle: TextStyle(color: myColors.pink(), fontSize: 20),
+                iconColor: myColors.pink(),
+                focusColor: myColors.pink(),
+                fillColor: myColors.pink(),
+                hoverColor: myColors.pink(),
+                prefixIconColor: myColors.pink(),
+                suffixIconColor: myColors.pink(),
               ),
             ),
           ),
@@ -150,7 +150,7 @@ class _EditPlanModalState extends State<EditPlanModal> {
                   child: Text(
                     '終日',
                     style: TextStyle(
-                      color: myPink,
+                      color: myColors.pink(),
                       fontSize: thisFontSize,
                     ),
                   ),
@@ -161,8 +161,8 @@ class _EditPlanModalState extends State<EditPlanModal> {
                     right: 20,
                   ),
                   child: Switch(
-                    focusColor: myPink,
-                    activeColor: myPink,
+                    focusColor: myColors.pink(),
+                    activeColor: myColors.pink(),
                     value: isAllDay,
                     onChanged: (value) {
                       setState(
@@ -190,7 +190,7 @@ class _EditPlanModalState extends State<EditPlanModal> {
                         padding: const EdgeInsets.only(right: 20),
                         child: Icon(
                           Icons.start,
-                          color: myPink,
+                          color: myColors.pink(),
                         ),
                       ),
                       InkWell(
@@ -204,10 +204,10 @@ class _EditPlanModalState extends State<EditPlanModal> {
                               return Theme(
                                 data: Theme.of(context).copyWith(
                                   colorScheme: ColorScheme.dark(
-                                    primary: myPurple,
-                                    onPrimary: myBlack,
-                                    surface: myPurple,
-                                    onSurface: myPink,
+                                    primary: myColors.purple(),
+                                    onPrimary: myColors.black(),
+                                    surface: myColors.purple(),
+                                    onSurface: myColors.pink(),
                                     brightness: Brightness.dark,
                                   ),
                                 ),
@@ -237,7 +237,7 @@ class _EditPlanModalState extends State<EditPlanModal> {
                           child: Text(
                             '${_startDate.month}月${_startDate.day}日 ${japaneseWeekday(_startDate.weekday)}',
                             style: TextStyle(
-                              color: myPink,
+                              color: myColors.pink(),
                               fontSize: thisFontSize,
                             ),
                           ),
@@ -284,7 +284,7 @@ class _EditPlanModalState extends State<EditPlanModal> {
                         child: Text(
                           '${_startDate.hour}:${_startDate.minute.toString().padLeft(2, '0')}',
                           style: TextStyle(
-                            color: myPink,
+                            color: myColors.pink(),
                             fontSize: thisFontSize,
                           ),
                         ),
@@ -309,7 +309,7 @@ class _EditPlanModalState extends State<EditPlanModal> {
                         padding: const EdgeInsets.only(right: 20),
                         child: Icon(
                           Icons.arrow_back,
-                          color: myPink,
+                          color: myColors.pink(),
                         ),
                       ),
                       InkWell(
@@ -323,10 +323,10 @@ class _EditPlanModalState extends State<EditPlanModal> {
                               return Theme(
                                 data: Theme.of(context).copyWith(
                                   colorScheme: ColorScheme.dark(
-                                    primary: myPurple,
-                                    onPrimary: myBlack,
-                                    surface: myPurple,
-                                    onSurface: myPink,
+                                    primary: myColors.purple(),
+                                    onPrimary: myColors.black(),
+                                    surface: myColors.purple(),
+                                    onSurface: myColors.pink(),
                                     brightness: Brightness.dark,
                                   ),
                                 ),
@@ -356,7 +356,7 @@ class _EditPlanModalState extends State<EditPlanModal> {
                           child: Text(
                             '${_endDate.month}月${_endDate.day}日 ${japaneseWeekday(_endDate.weekday)}',
                             style: TextStyle(
-                              color: myPink,
+                              color: myColors.pink(),
                               fontSize: thisFontSize,
                             ),
                           ),
@@ -403,7 +403,7 @@ class _EditPlanModalState extends State<EditPlanModal> {
                         child: Text(
                           '${_endDate.hour}:${_endDate.minute.toString().padLeft(2, '0')}',
                           style: TextStyle(
-                            color: myPink,
+                            color: myColors.pink(),
                             fontSize: thisFontSize,
                           ),
                         ),
@@ -427,26 +427,26 @@ class _EditPlanModalState extends State<EditPlanModal> {
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
                 controller: _planCommentController,
-                cursorColor: myPink,
+                cursorColor: myColors.pink(),
                 style: TextStyle(
-                  color: myPink,
+                  color: myColors.pink(),
                   fontSize: 25,
                 ),
                 decoration: InputDecoration(
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: myPink),
+                    borderSide: BorderSide(color: myColors.pink()),
                   ),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: myPink),
+                    borderSide: BorderSide(color: myColors.pink()),
                   ),
                   labelText: 'コメント',
-                  labelStyle: TextStyle(color: myPink, fontSize: 20),
-                  iconColor: myPink,
-                  focusColor: myPink,
-                  fillColor: myPink,
-                  hoverColor: myPink,
-                  prefixIconColor: myPink,
-                  suffixIconColor: myPink,
+                  labelStyle: TextStyle(color: myColors.pink(), fontSize: 20),
+                  iconColor: myColors.pink(),
+                  focusColor: myColors.pink(),
+                  fillColor: myColors.pink(),
+                  hoverColor: myColors.pink(),
+                  prefixIconColor: myColors.pink(),
+                  suffixIconColor: myColors.pink(),
                 ),
               ),
             ),

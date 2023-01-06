@@ -1,8 +1,8 @@
+import 'package:calendar/view/components/value/my_colors.dart';
 import 'package:calendar/view/modal/create_plan_modal.dart';
 import 'package:calendar/view/modal/edit_plan_modal.dart';
 import 'package:calendar/model/plan_model.dart';
 import 'package:flutter/material.dart';
-import 'package:calendar/main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PlanListModal extends StatefulWidget {
@@ -24,25 +24,8 @@ class _DatePlanList extends State<PlanListModal> {
   List<PlanModel> planList = [];
 
   @override
-  void initState() {
-    super.initState();
-    // for (var plan in allPlanList) {
-    //   DateTime selectedDate = DateTime(
-    //       widget.selectedYear, widget.selectedMonth, widget.selectedDay);
-    //   if (selectedDate.isAtSameMomentAs(plan.startDate)) {
-    //     planList.add(plan);
-    //   } else if (selectedDate.isAtSameMomentAs(plan.endDate)) {
-    //     planList.add(plan);
-    //   } else if (selectedDate.isAfter(plan.startDate) &&
-    //       selectedDate.isBefore(plan.endDate)) {
-    //     planList.add(plan);
-    //   }
-    // }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height / 10 * 9,
       child: Column(
         children: [
@@ -63,7 +46,7 @@ class _DatePlanList extends State<PlanListModal> {
                   '${widget.selectedMonth} / ${widget.selectedDay}',
                   style: GoogleFonts.anton(
                     textStyle: TextStyle(
-                      color: myBlack,
+                      color: myColors.black(),
                       fontSize: 30,
                     ),
                   ),
@@ -77,7 +60,7 @@ class _DatePlanList extends State<PlanListModal> {
                     showModalBottomSheet(
                       context: context,
                       isScrollControlled: true,
-                      backgroundColor: myBlack,
+                      backgroundColor: myColors.black(),
                       shape: const RoundedRectangleBorder(
                         borderRadius:
                             BorderRadius.vertical(top: Radius.circular(15)),
@@ -100,7 +83,7 @@ class _DatePlanList extends State<PlanListModal> {
             ],
           ),
           Container(
-            margin: EdgeInsets.only(top: 40),
+            margin: const EdgeInsets.only(top: 40),
             width: MediaQuery.of(context).size.width - 30,
             child: SingleChildScrollView(
               child: Column(
@@ -113,7 +96,7 @@ class _DatePlanList extends State<PlanListModal> {
                             showModalBottomSheet(
                               context: context,
                               isScrollControlled: true,
-                              backgroundColor: myBlack,
+                              backgroundColor: myColors.black(),
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.vertical(
                                     top: Radius.circular(15)),
@@ -126,26 +109,26 @@ class _DatePlanList extends State<PlanListModal> {
                             );
                           },
                           child: Container(
+                            width: MediaQuery.of(context).size.width - 30,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: myColors.black(),
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                width: 2,
+                                color: myColors.yellow(),
+                              ),
+                            ),
                             child: Text(
                               planList[i].title,
                               style: TextStyle(
                                 fontSize: 30,
-                                color: myPink,
-                              ),
-                            ),
-                            width: MediaQuery.of(context).size.width - 30,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: myBlack,
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                width: 2,
-                                color: myYellow,
+                                color: myColors.pink(),
                               ),
                             ),
                           ),
                         ),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.only(
                             bottom: 10,
                           ),

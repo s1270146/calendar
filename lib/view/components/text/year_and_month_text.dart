@@ -1,5 +1,5 @@
+import 'package:calendar/view/components/value/my_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:calendar/main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class YearAndMonthText extends StatelessWidget {
@@ -18,7 +18,7 @@ class YearAndMonthText extends StatelessWidget {
         style: GoogleFonts.anton(
           textStyle: TextStyle(
             fontSize: 30,
-            color: myPink,
+            color: myColors.myPink,
           ),
         ),
       ),

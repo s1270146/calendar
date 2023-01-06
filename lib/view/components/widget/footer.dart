@@ -1,6 +1,6 @@
+import 'package:calendar/view/components/value/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:calendar/main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:calendar/provider/main_screen_index_provider.dart';
 
@@ -35,10 +35,10 @@ class FooterState extends ConsumerState<Footer> {
           label: 'Settings',
         ),
       ],
-      backgroundColor: myPurple,
-      selectedItemColor: myPink,
+      backgroundColor: myColors.purple(),
+      selectedItemColor: myColors.pink(),
       selectedLabelStyle: GoogleFonts.anton(),
-      unselectedItemColor: myBlack,
+      unselectedItemColor: myColors.black(),
       unselectedLabelStyle: GoogleFonts.anton(),
       currentIndex: selectMainIndex,
       onTap: (index) =>
