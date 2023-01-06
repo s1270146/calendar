@@ -1,7 +1,6 @@
 import 'package:calendar/view/components/button/back_today_button.dart';
 import 'package:calendar/view/components/widget/date_item.dart';
 import 'package:calendar/view/components/button/create_plan_button.dart';
-import 'package:calendar/model/plan_model.dart';
 import 'package:calendar/view/components/text/year_and_month_text.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar/main.dart';
@@ -11,11 +10,11 @@ class MonthCalendarPage extends StatelessWidget {
     Key? key,
     required this.year,
     required this.month,
-    required this.planList,
+    required this.backTodayButton,
   }) : super(key: key);
   final int year;
   final int month;
-  final List<PlanModel> planList;
+  final BackTodayButton backTodayButton;
 
   List<List<DateTime>> createDateOfMonth(int year, int month) {
     List<List<DateTime>> date = [];
@@ -66,7 +65,7 @@ class MonthCalendarPage extends StatelessWidget {
                     Visibility(
                       visible: year != DateTime.now().year ||
                           month != DateTime.now().month,
-                      child: const BackTodayButton(),
+                      child: backTodayButton,
                     ),
                     const CreatePlanButton(),
                   ],
@@ -90,7 +89,7 @@ class MonthCalendarPage extends StatelessWidget {
                         borderColor: myPurple,
                         textColor: myBlack,
                         isAddMonth: aDate.day == 1,
-                        planList: planList,
+                        planList: [],
                       ),
                     } else ...[
                       DateItem(
@@ -103,7 +102,7 @@ class MonthCalendarPage extends StatelessWidget {
                         borderColor: myPurple,
                         textColor: myPink,
                         isAddMonth: aDate.day == 1,
-                        planList: planList,
+                        planList: [],
                       )
                     ]
                   else ...[
@@ -117,7 +116,7 @@ class MonthCalendarPage extends StatelessWidget {
                       borderColor: myPink,
                       textColor: myBlack,
                       isAddMonth: aDate.day == 1 || aDate.weekday == 7,
-                      planList: planList,
+                      planList: [],
                     ),
                   ]
               ],

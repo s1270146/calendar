@@ -26,18 +26,18 @@ class _DatePlanList extends State<PlanListModal> {
   @override
   void initState() {
     super.initState();
-    for (var plan in allPlanList) {
-      DateTime selectedDate = DateTime(
-          widget.selectedYear, widget.selectedMonth, widget.selectedDay);
-      if (selectedDate.isAtSameMomentAs(plan.startDate)) {
-        planList.add(plan);
-      } else if (selectedDate.isAtSameMomentAs(plan.endDate)) {
-        planList.add(plan);
-      } else if (selectedDate.isAfter(plan.startDate) &&
-          selectedDate.isBefore(plan.endDate)) {
-        planList.add(plan);
-      }
-    }
+    // for (var plan in allPlanList) {
+    //   DateTime selectedDate = DateTime(
+    //       widget.selectedYear, widget.selectedMonth, widget.selectedDay);
+    //   if (selectedDate.isAtSameMomentAs(plan.startDate)) {
+    //     planList.add(plan);
+    //   } else if (selectedDate.isAtSameMomentAs(plan.endDate)) {
+    //     planList.add(plan);
+    //   } else if (selectedDate.isAfter(plan.startDate) &&
+    //       selectedDate.isBefore(plan.endDate)) {
+    //     planList.add(plan);
+    //   }
+    // }
   }
 
   @override
