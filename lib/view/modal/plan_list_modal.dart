@@ -1,3 +1,4 @@
+import 'package:calendar/model/date_time_model.dart';
 import 'package:calendar/view/components/value/my_colors.dart';
 import 'package:calendar/view/modal/create_plan_modal.dart';
 import 'package:calendar/view/modal/edit_plan_modal.dart';
@@ -5,26 +6,16 @@ import 'package:calendar/model/plan_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PlanListModal extends StatefulWidget {
+class PlanListModal extends StatelessWidget {
   const PlanListModal({
     Key? key,
-    required this.selectedYear,
-    required this.selectedMonth,
-    required this.selectedDay,
+    required this.selectedDate,
   }) : super(key: key);
-  final int selectedYear;
-  final int selectedMonth;
-  final int selectedDay;
-
-  @override
-  State<PlanListModal> createState() => _DatePlanList();
-}
-
-class _DatePlanList extends State<PlanListModal> {
-  List<PlanModel> planList = [];
+  final DateTimeModel selectedDate;
 
   @override
   Widget build(BuildContext context) {
+    List<PlanModel> planList = [];
     return SizedBox(
       height: MediaQuery.of(context).size.height / 10 * 9,
       child: Column(
@@ -43,7 +34,7 @@ class _DatePlanList extends State<PlanListModal> {
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.only(left: 20),
                 child: Text(
-                  '${widget.selectedMonth} / ${widget.selectedDay}',
+                  '${selectedDate.month} / ${selectedDate.day}',
                   style: GoogleFonts.anton(
                     textStyle: TextStyle(
                       color: myColors.black(),
@@ -67,9 +58,9 @@ class _DatePlanList extends State<PlanListModal> {
                       ),
                       builder: (BuildContext context) {
                         return CreatePlanModal(
-                          selectedYear: widget.selectedYear,
-                          selectedMonth: widget.selectedMonth,
-                          selectedDay: widget.selectedDay,
+                          selectedYear: selectedDate.year,
+                          selectedMonth: selectedDate.month,
+                          selectedDay: selectedDate.day,
                         );
                       },
                     );

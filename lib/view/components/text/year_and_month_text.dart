@@ -1,12 +1,12 @@
+import 'package:calendar/model/date_time_model.dart';
 import 'package:calendar/view/components/value/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class YearAndMonthText extends StatelessWidget {
-  const YearAndMonthText({Key? key, required this.year, required this.month})
-      : super(key: key);
-  final int year;
-  final int month;
+  const YearAndMonthText({Key? key, required this.dateTime}) : super(key: key);
+  final DateTimeModel dateTime;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class YearAndMonthText extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 10),
       alignment: Alignment.center,
       child: Text(
-        "$year/$month",
+        DateFormat('yyyy/MM').format(dateTime),
         style: GoogleFonts.anton(
           textStyle: TextStyle(
             fontSize: 30,

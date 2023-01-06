@@ -1,3 +1,4 @@
+import 'package:calendar/model/date_time_model.dart';
 import 'package:calendar/view/components/button/back_today_button.dart';
 import 'package:calendar/view/components/value/my_colors.dart';
 import 'package:flutter/material.dart';
@@ -22,16 +23,17 @@ class AllCalendarPageState extends ConsumerState<AllCalendarPage> {
     super.initState();
     int cnt = 0;
     int initialPageIndex = 0;
-    List<Map<String, int>> calendarParameter = [];
+    List<DateTimeModel> calendarParameter = [];
     for (int i = 1900; i <= 2100; i++) {
       for (int j = 1; j <= 12; j++) {
-        if (DateTime.now().year == i && DateTime.now().month == j) {
+        final date = DateTimeModel(
+          year: i,
+          month: j,
+        );
+        if (date.isCurrentMonth()) {
           initialPageIndex = cnt;
         }
-        calendarParameter.add({
-          'year': i,
-          'month': j,
-        });
+        calendarParameter.add(date);
         cnt++;
       }
     }
@@ -41,8 +43,7 @@ class AllCalendarPageState extends ConsumerState<AllCalendarPage> {
       calendarPage = calendarParameter
           .map(
             (parameter) => MonthCalendarPage(
-              year: parameter['year']!,
-              month: parameter['month']!,
+              dateTime: parameter,
               backTodayButton: BackTodayButton(
                 calendarPageController: calendarPageController,
               ),

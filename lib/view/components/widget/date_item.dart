@@ -1,44 +1,29 @@
+import 'package:calendar/model/date_time_model.dart';
 import 'package:calendar/view/components/value/my_colors.dart';
 import 'package:calendar/view/modal/plan_list_modal.dart';
-import 'package:calendar/model/plan_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 日付1日に対して一つのコンテナ
 
-class DateItem extends StatefulWidget {
+class DateItem extends StatelessWidget {
   const DateItem({
     Key? key,
-    required this.viewYear,
-    required this.viewMonth,
-    required this.selectedYear,
-    required this.selectedMonth,
-    required this.selectedDay,
+    required this.selectedDate,
     required this.backgroundColor,
     required this.borderColor,
     required this.textColor,
-    required this.isAddMonth,
-    required this.planList,
+    required this.isShowMonth,
   }) : super(key: key);
-  final int viewYear;
-  final int viewMonth;
-  final int selectedYear;
-  final int selectedMonth;
-  final int selectedDay;
+  final DateTimeModel selectedDate;
   final Color backgroundColor;
   final Color borderColor;
   final Color textColor;
-  final bool isAddMonth;
-  final List<PlanModel> planList;
+  final bool isShowMonth;
 
-  @override
-  State<DateItem> createState() => _DateItem();
-}
-
-class _DateItem extends State<DateItem> {
   @override
   Widget build(BuildContext context) {
-    int planListLength = widget.planList.length;
+    int planListLength = 0;
     return InkWell(
       onTap: () {
         showModalBottomSheet(
@@ -50,9 +35,7 @@ class _DateItem extends State<DateItem> {
           ),
           builder: (BuildContext context) {
             return PlanListModal(
-              selectedYear: widget.selectedYear,
-              selectedMonth: widget.selectedMonth,
-              selectedDay: widget.selectedDay,
+              selectedDate: selectedDate,
             );
           },
         );
@@ -62,28 +45,28 @@ class _DateItem extends State<DateItem> {
         width: (MediaQuery.of(context).size.width - 30) / 7,
         decoration: BoxDecoration(
           border: Border.all(
-            color: widget.borderColor,
+            color: borderColor,
           ),
-          color: widget.backgroundColor,
+          color: backgroundColor,
         ),
         child: Stack(
           children: [
             Container(
               alignment: Alignment.topLeft,
               child: Text(
-                widget.isAddMonth
-                    ? "${widget.selectedMonth.toString()}/${widget.selectedDay.toString()}"
-                    : widget.selectedDay.toString(),
+                isShowMonth
+                    ? "${selectedDate.month.toString()}/${selectedDate.day.toString()}"
+                    : selectedDate.day.toString(),
                 style: GoogleFonts.anton(
                   textStyle: TextStyle(
-                    color: widget.textColor,
+                    color: textColor,
                   ),
                 ),
               ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
+              child: SizedBox(
                 height: (MediaQuery.of(context).size.height - 300) / 6 - 20,
                 width: (MediaQuery.of(context).size.width - 30) / 7,
                 child: Column(
@@ -107,7 +90,7 @@ class _DateItem extends State<DateItem> {
                         ),
                         child: Center(
                           child: Text(
-                            widget.planList[i].title,
+                            '',
                             style: const TextStyle(
                               fontSize: 13,
                             ),
