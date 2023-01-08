@@ -1,4 +1,4 @@
-import 'package:calendar/model/plan_model.dart';
+import 'package:calendar/model/plan_model/plan_model.dart';
 import 'package:calendar/view/components/value/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';

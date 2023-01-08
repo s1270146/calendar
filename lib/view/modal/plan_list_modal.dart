@@ -2,7 +2,7 @@ import 'package:calendar/model/date_time_model.dart';
 import 'package:calendar/view/components/value/my_colors.dart';
 import 'package:calendar/view/modal/create_plan_modal.dart';
 import 'package:calendar/view/modal/edit_plan_modal.dart';
-import 'package:calendar/model/plan_model.dart';
+import 'package:calendar/model/plan_model/plan_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
