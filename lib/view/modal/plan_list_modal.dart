@@ -58,9 +58,7 @@ class PlanListModal extends StatelessWidget {
                       ),
                       builder: (BuildContext context) {
                         return CreatePlanModal(
-                          selectedYear: selectedDate.year,
-                          selectedMonth: selectedDate.month,
-                          selectedDay: selectedDate.day,
+                          selectedDate: selectedDate,
                         );
                       },
                     );

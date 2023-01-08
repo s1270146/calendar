@@ -34,6 +34,17 @@ class DateTimeModel extends DateTime {
     return false;
   }
 
+  DateTimeModel copyWith(
+      {int? year, int? month, int? day, int? hour, int? minute}) {
+    return DateTimeModel(
+      year: year ?? this.year,
+      month: month ?? this.month,
+      day: day ?? this.day,
+      hour: hour ?? this.day,
+      minute: minute ?? this.minute,
+    );
+  }
+
   List<List<DateTimeModel>> createDateOfMonth() {
     List<List<DateTimeModel>> datesOfMonth = [];
     DateTimeModel lastDay = DateTimeModel.fromDateTime(

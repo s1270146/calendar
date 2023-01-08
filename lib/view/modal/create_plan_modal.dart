@@ -1,25 +1,15 @@
+import 'package:calendar/model/date_time_model.dart';
 import 'package:calendar/view/components/value/my_colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 
-// 入力項目 変数
-// タイトル _planTitleController
-// 終日判定 isAllDay
-// 開始日時 _startDate
-// 終了日時 _endDate
-// コメント _planCommentController
-
 class CreatePlanModal extends StatefulWidget {
   const CreatePlanModal({
     Key? key,
-    required this.selectedYear,
-    required this.selectedMonth,
-    required this.selectedDay,
+    required this.selectedDate,
   }) : super(key: key);
-  final int selectedYear;
-  final int selectedMonth;
-  final int selectedDay;
+  final DateTimeModel selectedDate;
 
   @override
   State<CreatePlanModal> createState() => _CreatePlanModalState();
@@ -28,8 +18,8 @@ class CreatePlanModal extends StatefulWidget {
 class _CreatePlanModalState extends State<CreatePlanModal> {
   final _firestore = FirebaseFirestore.instance;
   bool isAllDay = true;
-  late DateTime _startDate;
-  late DateTime _endDate;
+  late DateTimeModel _startDate;
+  late DateTimeModel _endDate;
   final double thisFontSize = 20;
   final _planTitleController = TextEditingController();
   final _planCommentController = TextEditingController();
@@ -55,16 +45,15 @@ class _CreatePlanModalState extends State<CreatePlanModal> {
   @override
   void initState() {
     super.initState();
-    _startDate = DateTime(
-      widget.selectedYear,
-      widget.selectedMonth,
-      widget.selectedDay,
-      DateTime.now().hour + 1,
-      0,
+    _startDate = widget.selectedDate.copyWith(
+      hour: DateTime.now().hour + 1,
+      minute: 0,
     );
-    _endDate = _startDate.add(
-      const Duration(
-        hours: 1,
+    _endDate = DateTimeModel.fromDateTime(
+      _startDate.add(
+        const Duration(
+          hours: 1,
+        ),
       ),
     );
   }
@@ -231,16 +220,17 @@ class _CreatePlanModalState extends State<CreatePlanModal> {
                           );
                           if (selected != null) {
                             setState(() {
-                              _startDate = DateTime(
-                                selected.year,
-                                selected.month,
-                                selected.day,
-                                _startDate.hour,
-                                _startDate.minute,
+                              _startDate = _startDate.copyWith(
+                                year: selected.year,
+                                month: selected.month,
+                                day: selected.day,
                               );
                               if (_startDate.isAfter(_endDate)) {
-                                _endDate =
-                                    _startDate.add(const Duration(hours: 1));
+                                _endDate = DateTimeModel.fromDateTime(
+                                  _startDate.add(
+                                    const Duration(hours: 1),
+                                  ),
+                                );
                               }
                             });
                           }
@@ -276,16 +266,16 @@ class _CreatePlanModalState extends State<CreatePlanModal> {
                           title: const Text('Select Start Time'),
                           onConfirm: (picker, selected) {
                             setState(() {
-                              _startDate = DateTime(
-                                _startDate.year,
-                                _startDate.month,
-                                _startDate.day,
-                                selected[0],
-                                selected[1],
+                              _startDate = _startDate.copyWith(
+                                hour: selected[0],
+                                minute: selected[1],
                               );
                               if (_startDate.isAfter(_endDate)) {
-                                _endDate =
-                                    _startDate.add(const Duration(hours: 1));
+                                _endDate = DateTimeModel.fromDateTime(
+                                  _startDate.add(
+                                    const Duration(hours: 1),
+                                  ),
+                                );
                               }
                             });
                           },
@@ -349,19 +339,22 @@ class _CreatePlanModalState extends State<CreatePlanModal> {
                             }),
                           );
                           if (selected != null) {
-                            setState(() {
-                              _endDate = DateTime(
-                                selected.year,
-                                selected.month,
-                                selected.day,
-                                _endDate.hour,
-                                _endDate.minute,
-                              );
-                              if (_startDate.isAfter(_endDate)) {
-                                _startDate =
-                                    _endDate.add(const Duration(hours: -1));
-                              }
-                            });
+                            setState(
+                              () {
+                                _endDate = _endDate.copyWith(
+                                  year: selected.year,
+                                  month: selected.month,
+                                  day: selected.day,
+                                );
+                                if (_startDate.isAfter(_endDate)) {
+                                  _startDate = DateTimeModel.fromDateTime(
+                                    _endDate.add(
+                                      const Duration(hours: -1),
+                                    ),
+                                  );
+                                }
+                              },
+                            );
                           }
                         },
                         child: Container(
@@ -395,16 +388,16 @@ class _CreatePlanModalState extends State<CreatePlanModal> {
                           title: const Text('Select End Time'),
                           onConfirm: (picker, selected) {
                             setState(() {
-                              _endDate = DateTime(
-                                _endDate.year,
-                                _endDate.month,
-                                _endDate.day,
-                                selected[0],
-                                selected[1],
+                              _endDate = _endDate.copyWith(
+                                hour: selected[0],
+                                minute: selected[1],
                               );
                               if (_startDate.isAfter(_endDate)) {
-                                _startDate =
-                                    _endDate.add(const Duration(hours: -1));
+                                _startDate = DateTimeModel.fromDateTime(
+                                  _endDate.add(
+                                    const Duration(hours: -1),
+                                  ),
+                                );
                               }
                             });
                           },

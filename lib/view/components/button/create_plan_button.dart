@@ -1,3 +1,4 @@
+import 'package:calendar/model/date_time_model.dart';
 import 'package:calendar/view/components/value/my_colors.dart';
 import 'package:calendar/view/components/value/my_size.dart';
 import 'package:calendar/view/modal/create_plan_modal.dart';
@@ -21,9 +22,9 @@ class CreatePlanButton extends StatelessWidget {
           ),
           builder: (BuildContext context) {
             return CreatePlanModal(
-              selectedYear: DateTime.now().year,
-              selectedMonth: DateTime.now().month,
-              selectedDay: DateTime.now().day,
+              selectedDate: DateTimeModel.fromDateTime(
+                DateTime.now(),
+              ),
             );
           },
         );
